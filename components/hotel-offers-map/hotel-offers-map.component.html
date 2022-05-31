@@ -1,0 +1,15 @@
+<div id="mapScroll" class="d-flex flex-column justify-content-center position-relative"  #scrollMapId>
+    <hotel-offer-map-redo-search *ngIf="redoSearchButton" (redoSearchClick)="onRedoSearch()"></hotel-offer-map-redo-search>
+    <div #gmap [ngClass]="getMapClass()">
+    </div>
+    <div class="map-cal" (clickOutside)="onClickedOutside($event)">
+        <hotel-offer (selected)="onSelected($event)" [isListView]="false"
+                     [ngClass]="isGalleryOpen ? 'hotelOfferGallery' : 'hotelOffer'" *ngIf="shouldDisplayHotelOffer"
+                     [hotelOffer]="hotelOffer" [viewPort]="viewPort" (toggleGallery)="toggleGallery($event)"
+                     data-slnm-ihg="hotelContainer"
+                     [searchCriteria]="searchCriteria"
+                     (bulkAvailabilityViewed)="onViewAvailableDates($event)"
+                     [bulkAvailabilityMap]="bulkAvailabilityMap"
+                     [bulkAvailabilityError] = "bulkAvailabilityError"></hotel-offer>
+    </div>
+</div>

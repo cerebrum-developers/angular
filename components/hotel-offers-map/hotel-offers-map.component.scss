@@ -1,0 +1,281 @@
+@import "variables";
+
+.map-component {
+  width: 100%;
+  height: calc( 100vh - #{$ihg_height} );
+}
+
+.smallMap {
+  height: 178px;
+  width: 100%;
+  background-color: $neutralGrey;
+}
+
+.largeMap {
+  height: 348px;
+  width: 100%;
+  background-color: $neutralGrey;
+}
+
+.hotelOffer{
+  position: absolute;
+  bottom: .25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hotelOfferGallery{
+  bottom: .25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes pulse{
+  to {
+    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+  }
+}
+
+@-webkit-keyframes pulse{
+  to {
+    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+  }
+}
+
+#markerLayer .activeMarker {
+  animation: pulse .5s 1 alternate;
+  -webkit-animation: pulse .5s 1 alternate;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+  animation-fill-mode: forwards;
+}
+
+[dir="rtl"] .zoomControlButton, .zoomControlButton {
+  cursor: pointer;
+  color: $typographyColor1;
+  border: 0;
+  border-radius: 0px;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 300ms ease-in-out;
+  font-size: 24px;
+  &.zoom {
+    position: absolute;
+    left: 10px;
+    padding: 5px 5px;
+    &.in{
+      top: 10px;
+    }
+    &.out {
+      top: 51px;
+    }
+    &:active {
+      opacity: 0.50;
+    }
+  }
+}
+.mapRefreshIcon{
+  background:url(/cdn/vendor/ihgimages/v1.0.0/refresh.svg) no-repeat;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}
+
+.redoButtonContainer {
+  top: 10px !important;
+  left: 61px !important;
+  color: white;
+}
+
+.btn-redoSearch {
+  display: flex;
+  border-radius: 0% !important;
+}
+
+.btn-redo-text {
+    height: 6px;
+    min-width: 61px;
+    align-items: right;
+    padding-top: 4px;
+    padding-left: 8px;
+    font-size: 13px;
+}
+
+
+// Map marker css
+
+$brandBorders: (
+ihg: $ihg_brandColor,
+6c: $ihg_brandColor,
+cp: $cp_brandColor,
+ki: $ki_brandColor,
+cv: $cv_brandColor,
+cw: $cw_brandColor,
+ex: $ex_brandColor,
+hi: $hi_brandColor,
+ic: $ic_brandColor,
+in: $in_brandColor,
+ma: $ma_brandColor,
+rs: $rs_brandColor,
+sb: $sb_brandColor,
+ul: $ul_brandColor,
+vn: $vn_brandColor,
+va: $va_brandColor,
+vx: $vx_brandColor,
+re: $re_brandColor,
+ii: $ii_brandColor,
+na: $black,
+we: $we_brandColor,
+lx: $lx_brandColor,
+
+)!default;
+
+@each $name, $value in $brandBorders {
+.marker-border--#{$name} {
+  border: 1px solid $value;
+}
+
+.map-marker .arrow--#{$name} {
+  margin-top: -1px;
+  padding-top: 0px;
+  &::before {
+    content: "";
+    position: absolute;
+    border-width: 8px;
+    border-style: solid;
+    border-color: $value transparent transparent transparent;
+  }
+}
+}
+
+.marker-border--sp {
+border: 1px solid $sp_brandColor;
+  /* @noflip */
+  margin-left: -40% !important;
+  /* @noflip */
+  margin-right: 40% !important;
+}
+
+.map-marker .arrow--sp {
+margin-top: -1px;
+padding-top: 0px;
+&::before {
+  content: "";
+  position: absolute;
+  border-width: 8px;
+  border-style: solid;
+  border-color: $sp_brandColor transparent transparent transparent;
+}
+}
+
+.map-marker {
+  display: inline-flex;
+  flex-flow: column;
+}
+
+.marker-container.ihg-map-marker-selected {
+  color: #FFF;
+  background-color: grey;
+}
+
+.map-marker.ihg-map-marker-unselected {
+  color: #3F3D3D;
+  background-color: white;
+}
+
+/* @noflip */
+.marker-container {
+  display: inline-flex;
+  border-radius: 25px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  line-height: 0;
+  min-height: 30px;
+  min-width: 30px;
+  background-color: white;
+  /* @noflip */
+  margin-left: -40%;
+  /* @noflip */
+  margin-right: 40%;
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.marker-container-clicked {
+  background: $ihgGrey;
+}
+
+.marker-container-item {
+  min-width: 30px;
+  border-radius: 25px;
+  &.item-text {
+    display: inline-flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+  .typeText {
+    font-family: $primaryFontRegular, sans-serif !important;
+    font-size: 11px;
+    line-height: 18px;
+    /* @noflip */
+    padding-top: 5px;
+    /* @noflip */
+    padding-left: 3px;
+    /* @noflip */
+    padding-right: 5px;
+    line-height: 16px;
+  }
+  .notAvail {
+    font-family: $primaryFontSemiBold, sans-serif !important;
+    font-size: 12px;
+    line-height: 20px;
+    /* @noflip */
+    padding-left: 5px;
+    min-width: 130px;
+    flex-wrap: nowrap;
+  }
+  .amount {
+    font-family: $primaryFontSemiBold, sans-serif !important;
+    font-size: 14px;
+    line-height: 29px;
+
+    /* @noflip */
+    padding-left: 5px;
+    line-height: 24px;
+  }
+  &.item-image {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+
+@media only screen and (min-width: 767px) {
+  @each $name, $value in $brandBorders {
+    .map-marker .arrow--#{$name} {
+      margin-top: -3px;
+      /* @noflip */
+      padding-top: 0px;
+      /* @noflip */
+      padding-left: 8px;
+    }
+  }
+  .marker-container-item.item-image {
+    display: block;
+  }
+  .marker-container {
+    /* @noflip */
+    margin-left: 0%;
+    /* @noflip */
+    margin-right: auto;
+  }
+}
+.map-cal
+{
+  position: relative;
+  z-index: 99;
+}

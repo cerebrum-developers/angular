@@ -1,0 +1,8 @@
+@import "variables";
+
+:host::content .mapContainer {
+    height: calc( 100vh - #{$ihg_height} );
+    top: $ihg_height;
+    width: 100%;
+    background-color: $neutralGrey;
+}

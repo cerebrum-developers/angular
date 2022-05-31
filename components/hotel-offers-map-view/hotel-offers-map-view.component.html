@@ -1,0 +1,16 @@
+<div [hidden]="listViewEnabled" class="mapContainer" data-slnm-ihg="hotelMapContainer" *ngIf="!listViewEnabled">
+   <div>
+      <hotel-offers-map 
+         [hotelOffersMap]="hotelOffersMap$"
+         (mapLoaded)="onMapLoaded()"
+         [hotelOffers]="(hotelOffers$|async)"
+         [viewPort]="viewPort"
+         [searchCriteria]="searchCriteria"
+         [showInclusivePrices]="(searchFacadeService.showPricesWithTaxesAndFees$|async)"
+         [selectedCurrency]="currencyConversionFacadeService.currentCurrency$|async"
+         (bulkAvailabilityViewed)="onViewOfferAvailableDates($event)"         
+         [bulkAvailabilityMap]="bulkAvailabilityMap"
+         [bulkAvailabilityError] = "bulkAvailabilityError">
+      </hotel-offers-map>
+   </div>
+</div>

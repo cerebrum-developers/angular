@@ -1,0 +1,21 @@
+@import 'variables';
+
+.redo-search{
+    font-family: $primaryFontRegular, sans-serif;
+    color: $typographyColor1;    
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 224px;
+    height: 44px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15px;
+    margin: 0 auto;
+    font-size: 16px;
+    z-index: 2;
+    @media (max-width:$sm){
+        top: auto;
+        bottom: 20px;
+    }
+}
